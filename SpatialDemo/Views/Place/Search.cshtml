@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+@if (Model.NeedsInitialization)
+{
+    <p>
+        There is no data in the database yet.
+    </p>
+    <p>
+        @Html.ActionLink("Click here", "Initialize") to initialize the databae. This will <em><strong>literally</strong></em>
+        take minutes, as over 45,000 postal code records will be created in the database.
+    </p>
+    <p>
+        It would have been faster to only include a sub-set of records for demo's sake, but I figured that'd make the demo
+        more confusing. With all of the US postal codes included, the demo will be more complete (for US postal codes, at least).
+        Plus, you'll be able to tweak this code at will without needing knowlege of a limited set of postal codes in the US.
+    </p>
+}
+else
+{
+
+    <h2>Search for Places by Postal Code</h2>
+
+    Html.RenderPartial("SearchForm");
+
+}

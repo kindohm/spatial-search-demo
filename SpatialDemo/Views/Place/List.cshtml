@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+
+<h2>Results for @Model.PostalCode within @Model.MaxDistance.ToString() miles</h2>
+
+@if (Model.NoZipCode)
+{
+    <p>Couldn't find that postal code.</p>
+}
+else if (Model.Results.Count != 0)
+{
+    <ul>
+
+        @foreach (var result in @Model.Results)
+        {
+            <li>@result.Name - @result.Distance.ToString("0.00") Miles</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Nothing found.</p>
+}
+
+<h2>Search Again by Postal Code</h2>
+
+@{ Html.RenderPartial("SearchForm"); }
