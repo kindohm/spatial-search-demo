@@ -125,6 +125,7 @@
     <Content Include="App_Data\places.txt" />
     <Content Include="App_Data\readme.txt" />
     <Content Include="App_Data\US.txt" />
+    <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

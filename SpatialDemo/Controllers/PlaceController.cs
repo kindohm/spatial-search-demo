@@ -59,7 +59,9 @@ namespace SpatialDemo.Controllers
                         .Select(p => new PlaceResult()
                         {
                             Name = p.Name,
-                            Distance = (p.Location.Distance(startPoint.Location) / MetersToMiles).Value
+                            Distance = (p.Location.Distance(startPoint.Location) / MetersToMiles).Value,
+                            Latitude = p.Latitude,
+                            Longitude = p.Longitude
                         })
                         .OrderBy(p => p.Distance)
                         .ToList();
