@@ -2,35 +2,35 @@
     ViewBag.Title = "List";
 }
 
-<h2>Results for @Model.PostalCode within @Model.MaxDistance.ToString() miles</h2>
+<h3>Results for @Model.PostalCode within @Model.MaxDistance.ToString() miles</h3>
 
-@if (Model.NoZipCode)
-{
-    <p>Couldn't find that postal code.</p>
-}
-else if (Model.Results.Count != 0)
-{
-    <table class="table">
-        <tr>
-            <th>Place</th>
-            <th>Distance (miles)</th>
-        </tr>
-        @foreach (var result in @Model.Results)
-        {
+<div class="results">
+    @if (Model.NoZipCode)
+    {
+        <p>Couldn't find that postal code.</p>
+    }
+    else if (Model.Results.Count != 0)
+    {
+        <table class="table table-striped">
             <tr>
-                <td><a target="_blank"
-                    href="https://maps.google.com/?q=@result.Latitude.ToString(),@result.Longitude.ToString()">@result.Name</a></td>
-                <td>@result.Distance.ToString("0.00")</td>
+                <th>Place</th>
+                <th>Distance (miles)</th>
             </tr>
-        }
-    </table>
-}
-else
-{
-    <p>Nothing found.</p>
-}
-
+            @foreach (var result in @Model.Results)
+            {
+                <tr>
+                    <td><a target="_blank"
+                    href="https://maps.google.com/?q=@result.Latitude.ToString(),@result.Longitude.ToString()">@result.Name</a></td>
+                    <td>@result.Distance.ToString("0.00")</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>Nothing found.</p>
+    }
+</div>
 <hr />
-<h2>Search Again by Postal Code</h2>
 
-@{ Html.RenderPartial("SearchForm"); }
+@{ Html.RenderPartial("SearchFormPartial"); }

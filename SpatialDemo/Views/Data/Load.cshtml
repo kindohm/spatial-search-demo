@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Initialize";
+}
+
+<h3>Data Load Complete</h3>
+
+<p>Postal codes inserted: @Model.PostalCodesInserted.ToString()</p>
+<p>Places inserted: @Model.PlacesInserted.ToString()</p>
+<p>Seconds elapsed: @Model.Elapsed.ToString()</p>
+<p>@Html.ActionLink("Go back to the search page", "Search", "Place")</p>

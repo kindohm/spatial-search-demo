@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "How";
+}
+
+<h3>How Does This Work?</h3>
+
+<p>There are two main tables/entities in this demo:</p>
+<ul>
+    <li>PostalCode</li>
+    <li>Place</li>
+</ul>
+
+<p>
+    <em>PostalCode</em> defines a postal code in the United States. They are populated from a flat, tab-delimiated
+    data file at App_Data/US.txt. This data file is loaded at the beginning of the demo. There are over 45,000 postal codes to
+    load so it takes a few minutes.
+</p>
+
+<p><em>Place</em> represents an interesting location, such as a restaurant or landmark.</p>
+
+<h3>Setting SQL Geography Field Values</h3>
+
+<p>
+    When PostalCode and Place entities are created, they have a Location property that gets set. Location is of type
+    <code>DbGeography</code>, which maps to a SQL Geography type. To set the Location value, you must use a static helper
+    method from the <code>DbGeography</code> class, such as <code>DbGeography.FromText</code>.
+</p>
+
+<p>The <code>FromText</code> method takes in a SQL string snippet:</p>
+
+<pre><code>entity.Location = DbGeography.FromText("POINT(-119.02819 43.28819"))</code></pre>
+
+<p>
+    The <code>FromText</code> method can take in more than just a <code>POINT</code>. It can accept more complex
+    SQL Geography values such as lines and 2D areas.
+</p>
+
+<h3>Searching by Distance</h3>
+
+<p>
+    To do something useful with this data, you might want to find places that have a location within a given distance from
+    another location. With Entity Framework 5 you can do this easily with a LINQ query:
+</p>
+
+<pre><code>var origin = DbGeography.FromText("POINT(-119.02819 43.28819"));
+var meters = 100000d;
+var results = context.Places
+    .Where(p => p.Location.Distance(origin) <= meters);</code></pre>
+
+<h3>Ordering by Distance</h3>
+
+<p>
+    At some point you'll want to order places by how far away they are from
+    another interesting location. You can do this by selecting the distance
+    into a new object. You'll obviously do this <em>after</em> querying by distance:
+</p>
+
+<pre><code>var interestingLocation = DbGeography.FromText("POINT(-119.02819 43.28819"));
+var meters = 1000d;
+
+var nearbyPlaces = context.Places
+    .Where(p => p.Location.Distance(interestingLocation) <= meters);
+
+var nearbyPlacesWithDistances = nearbyPlaces
+    .Select(p => new { Place = p, Distance = p.Location.Distance(interestingLocation) });
+
+var orderedPlaces = nearbyPlacesWithDistances
+    .OrderBy(p => p.Distance);</code></pre>

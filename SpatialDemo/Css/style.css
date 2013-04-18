@@ -1,15 +1,31 @@
 ﻿body {
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-    background: #666;
-}
-
-.main {
-    padding: 10px;
-    border: solid 2px #333;
-    background-color: #fff;
-    margin-top: 30px;
 }
 
 input {
     margin: 0px !important;
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+.input-postal-code {
+    width: 200px;
+}
+
+.search-form select {
+    width: 130px;
+}
+
+.search-form {
+    margin-top: 20px;
+}
+
+.results {
+    margin-top: 20px;
+}
+
+h3 {
+    margin-top: 20px;
 }

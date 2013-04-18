@@ -1,0 +1,26 @@
+﻿@if (Model.NeedsInitialization)
+{
+    <p>
+        There is no data in the database yet, or the data load is incomplete.
+    </p>
+    <p>
+        <strong>@Html.ActionLink("Click here", "Load", "Data")</strong> to initialize the databae. This will <em>likely</em>
+        take minutes (55 seconds on my machine), as over 45,000 postal code records will be created in the database.
+    </p>
+    <p>
+        <strong>(LocalDb)\v11.0</strong> is used in the connection string by default. If you want to use a different SQL instance, you can
+        change the connection string. EF5 is being used and the database will be created automatically.
+    </p>
+    <p>
+        It would have been faster to only include only a sub-set of US postal codes for demo's sake, that would make it a little
+        confusing (and not nearly as fun and interesting).
+    </p>
+
+    <p>
+        And yes, a 45,000 record data-load could take a lot less than 55 seconds, but I'm specifically using Entity Framework 5
+        to demonstrate how to set some Geography type fields on entities and save them to the database. A script or database
+        backup would have been faster, but then the point would have been missed.
+    </p>
+
+    <p><strong>Enough with the disclaimers, @Html.ActionLink("load the data", "Load", "Data")!</strong></p>
+}

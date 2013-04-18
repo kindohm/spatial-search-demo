@@ -108,6 +108,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="Data\SpatialDemoContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -138,7 +140,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Place\Initialize.cshtml" />
+    <Content Include="Views\Data\Load.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -156,7 +158,13 @@
     <Content Include="Views\Place\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Place\SearchForm.cshtml" />
+    <Content Include="Views\Place\SearchFormPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Place\NoDataPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\About\How.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
